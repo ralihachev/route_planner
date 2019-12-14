@@ -1,0 +1,80 @@
+<div class="row">
+    <div class="col-lg-4 col-md-12 col-sm-12">
+        <div class="card">
+            <h5 class="card-title bg-warning" style="height: 70px; padding-top: 20px; padding-left: 20px; color: #ffffff">Itinerary suggestions</h5>
+            <form [formGroup]="routeForm" (ngSubmit)="onSubmit(routeForm.value)">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="form-group">
+                            <label for="origin">Origin:</label>
+                            <input type="text" class="form-control" name="origin" id="origin" formControlName="origin" value="{{origin}}">
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label for="destination">Destination:</label>
+                            <input type="text" class="form-control" name="destination" id="destination" formControlName="destination" value="{{destination}}">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group ">
+                    <button class="form-control btn btn-warning" type="submit">Submit</button>
+                </div>
+            </form>
+
+            <div class="card-body" *ngFor="let itinerary of routes">
+
+                <div class="row">
+                    <div class="col" *ngFor="let modes of itinerary.modes">
+
+                        <button class="btn btn-white border border-warning" type="button" data-toggle="collapse" data-target="#collapse" aria-expanded="false" aria-controls="collapse" style="width: 100%; height: 70px">
+                            {{ itinerary.timeStart |  date: 'HH:mm' }} - {{ itinerary.timeEnd |  date: 'HH:mm' }}
+                            <ul *ngFor="let mode of modes.mode; index as i" style="display: inline" >
+                                <li style="display: inline" *ngIf="mode == 'WALK'">
+                                    <i class="material-icons icon">directions_walk</i>
+                                </li>
+                                <li style="display: inline" *ngIf="mode == 'RAIL'">
+                                    <i class="material-icons icon">directions_train</i>
+                                </li>
+                                <li style="display: inline" *ngIf="mode == 'CAR'">
+                                    <i class="material-icons icon">directions_car</i>
+                                </li>
+                                <li style="display: inline" *ngIf="mode == 'BUS'">
+                                    <i class="material-icons icon">directions_bus</i>
+                                </li>
+                            </ul>
+                            <li style="display: inline">
+                                <i class="material-icons icon">arrow_drop_down</i>
+                            </li>
+                        </button>
+
+                        <div class="collapse" id="collapse">
+                            <div class="card card-body">
+                                <ul *ngFor="let mode of modes.mode; index as i" style="display: inline" >
+                                    <li style="display: inline" *ngIf="mode == 'WALK'">
+                                        <i class="material-icons icon">directions_walk</i>{{modes.duration[i]}} min
+                                    </li>
+                                    <li style="display: inline" *ngIf="mode == 'RAIL'">
+                                        <i class="material-icons icon">directions_train</i>{{modes.duration[i]}} min
+                                    </li>
+                                    <li style="display: inline" *ngIf="mode == 'CAR'">
+                                        <i class="material-icons icon">directions_car</i>{{modes.duration[i]}} min
+                                    </li>
+                                    <li style="display: inline" *ngIf="mode == 'BUS'">
+                                        <i class="material-icons icon">directions_bus</i>{{modes.duration[i]}} min
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-8 col-md-12 col-sm-12">
+        <div id="map" style="height: 500px; width: 100%;"></div>
+    </div>
+</div>

@@ -1,0 +1,34 @@
+.icon{
+    display:inline;
+    vertical-align:middle;
+}
+
+p.no-span {
+    display: table;
+    white-space: nowrap;
+}
+
+p.no-span:after {
+    border-top: 3px solid #FFCC00;
+    content: '';
+    display: table-cell;
+    position: relative;
+    top: 0.7em;
+    width: 100%;
+}
+
+p.no-span:after {
+    left: 1.5%;
+}
+
+
+span > i {
+    color: white;
+}
+span > input {
+    background: none;
+    color: white;
+    padding: 0;
+    border: 0;
+}
+
