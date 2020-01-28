@@ -84,9 +84,9 @@ export class RouteComponent implements OnInit, AfterViewInit {
                 weight: 7
             }).addTo(itinerary_features);
 
-        for (var i = 0; i<this.result[0].legs.length; i++){
+        for (var i = 0; i<this.result[1][0].legs.length; i++){
 
-            var points = polyline.decode(this.result[0].legs[i].legGeometry.points);
+            var points = polyline.decode(this.result[1][0].legs[i].legGeometry.points);
 
             for (var j=0; j < points.length; j++) {
                 leg_polyline.addLatLng(L.latLng(points[j][0], points[j][1]));

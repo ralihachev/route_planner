@@ -1,6 +1,14 @@
 const express = require('express');
+const path = require('path');
 const app = express();
 
-app.use(express.static(__dirname + '/dist'));
+// Serve static files....
+app.use(express.static(__dirname + '/dist/AngRoutePlanner'));
 
-app.listen(process.env.PORT || 8080);
+// Send all requests to index.html
+app.get('/*', function(req, res) {
+    res.sendFile(path.join(__dirname + '/dist/AngRoutePlanner/index.html'));
+});
+
+// default Heroku PORT
+app.listen(process.env.PORT || 4000);
