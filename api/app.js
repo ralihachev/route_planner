@@ -7,10 +7,6 @@ var planRoute = require ('./functions/planRoute');
 var port = process.env.PORT || 3000 ;
 
 
-app.get('/', function(req, res){
-    res.send('Welcome to Node API');
-});
-
 app.get('/getData', function(req, res){
      res.json({'message': 'Hello World'});
 });
