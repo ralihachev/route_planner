@@ -12,11 +12,11 @@ app.all('*', function (req, res)  {
     res.status(200).sendFile(__dirname + '/dist/AngRoutePlanner/index.html');
 });
 
-app.get('/getData', function(req, res){
+app.get('/api/getData', function(req, res){
     res.json({'message': 'Hello World'});
 });
 
-app.post('/getRoute', bodyParser.json(), function(req, res) {
+app.post('/api/getRoute', bodyParser.json(), function(req, res) {
 
     var cityFrom = toLatLong(req.body.origin);
     var cityTo = toLatLong(req.body.destination);
