@@ -2,7 +2,7 @@ const request = require('request');
 const polyline = require('polyline');
 
 
-module.exports = function planRoute(cityFrom, cityTo, startDate, startTime, mode) {
+module.exports = function planRoute(cityFrom, cityTo, startDate, startTime) {
 
     var date = new Date();
 
@@ -26,7 +26,7 @@ module.exports = function planRoute(cityFrom, cityTo, startDate, startTime, mode
                     to: {lat: `+cityTo[1]+`, lon: `+cityTo[0]+`}
                     date: `+'"'+startDate+'"'+`
                     time: `+'"'+startTime+'"'+`
-                    transportModes: [{mode: `+mode+`}, {mode:WALK}]
+                    transportModes: [{mode: 'RAIL'}, {mode: 'WALK'}]
                     numItineraries: 5
                     minTransferTime: 600
                     walkSpeed: 1.7

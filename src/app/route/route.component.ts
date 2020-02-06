@@ -42,7 +42,7 @@ export class RouteComponent implements OnInit, AfterViewInit {
             this.destination = params.destination;
             this.result = JSON.parse(this.itinerary);
 
-            for (let itinerary of this.result[1]){
+            for (let itinerary of this.result){
                 for (let leg of itinerary.legs){
                     this.modes.push(leg.mode);
                     this.modes_duration.push(Math.ceil(leg.duration/60));
@@ -84,15 +84,14 @@ export class RouteComponent implements OnInit, AfterViewInit {
                 weight: 7
             }).addTo(itinerary_features);
 
-        for (var i = 0; i<this.result[1][0].legs.length; i++){
+        for (var i = 0; i<this.result[0].legs.length; i++){
 
-            var points = polyline.decode(this.result[1][0].legs[i].legGeometry.points);
+            var points = polyline.decode(this.result[0].legs[i].legGeometry.points);
 
             for (var j=0; j < points.length; j++) {
                 leg_polyline.addLatLng(L.latLng(points[j][0], points[j][1]));
             }
 
-            var markerLeg = L.marker([points[0][0], points[0][1]], {title: ''}).addTo(this.map);
             this.map.fitBounds(leg_polyline.getBounds());
         }
     }
